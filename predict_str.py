@@ -98,7 +98,7 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
-print(count)
+print("predict array:", count)
 result = result_str[str(count.index(max(count)))]
 fd = os.open("tmp", os.O_RDWR, 0o755)
 os.write(fd, result.encode("utf-8"))
