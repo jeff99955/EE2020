@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <string.h>
+#include <unistd.h>
 
 int main(int argc, char **argv){
     alarm(10);
@@ -35,6 +36,7 @@ int main(int argc, char **argv){
         exit(1);
     puts("connected");
     send(sockfd, filepath, strlen(filepath), 0);
+    usleep(100);
     int ffd = open(filepath, O_RDONLY);
     while( (n = read(ffd, buf, sizeof(buf))) > 0 ) {
         send(sockfd, buf, n, 0);

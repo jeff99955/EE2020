@@ -11,13 +11,13 @@
 #include <string.h>
 
 int main(int argc, char **argv){
-    char addr[128] = "linux8.csie.org";
+    // char addr[128] = "linux8.csie.org";
     char filepath[128], buf[4096];
     int port = 1268;
     struct sockaddr_in servaddr;
     int sockfd;
     int tmp;
-    gethostname(addr, sizeof(addr));
+    // gethostname(addr, sizeof(addr));
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     puts("socket successfully created");
     bzero(&servaddr, sizeof(servaddr));
@@ -41,7 +41,7 @@ int main(int argc, char **argv){
     FILE *fp;
     clifd = accept(sockfd, (struct sockaddr *)&cliaddr, (socklen_t *)&clilen);
     printf("clifd = %d\n", clifd);
-    if(recv(clifd, buf, sizeof(buf), 0) == 0)
+    if(recv(clifd, buf, 16, 0) == 0)
         exit(1);
     strcpy(filepath, buf);
     printf("filepath is %s\n", filepath);
