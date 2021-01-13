@@ -552,9 +552,9 @@ class Ui_MainWindow(object):
             execlp("./client", "./client", to_ip, filename)
         status = wait()
         if status[1]:
-            self.show("Error", "Cannot send the file")
+            print("Error", "Cannot send the file")
         else:
-            self.show("Success", "Succeed in sending files")
+            print("Success", "Succeed in sending files")
 
     def show(self, type: str, text: str):
         QMessageBox.about(self, type, text)
@@ -745,7 +745,7 @@ def socket_thread():
                 uui.reloadmessage()
             elif mj["type"] == "file":
                 buf = "Receiving file from " + \
-                    mj["to"] + ", saving to " + mj["body"]
+                    mj["from"] + ", saving to " + mj["body"]
                 pid = fork()
                 if pid == 0:
                     execlp("./server", "./server")
@@ -754,7 +754,7 @@ def socket_thread():
                 uui.reloadmessage()
             elif mj["type"] == "image":
                 buf = "Receiving image from " + \
-                    mj["to"] + ", saving to " + mj["body"]
+                    mj["from"] + ", saving to " + mj["body"]
                 uui.reloadmessage()
             elif mj["type"] == "setting":
                 i = mj["set"]
