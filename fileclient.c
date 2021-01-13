@@ -11,11 +11,12 @@
 #include <string.h>
 
 int main(int argc, char **argv){
+    alarm(10);
     char *addr  = argv[1], *filepath = argv[2];
     char buf[4096];
     int port = 1268;
     struct sockaddr_in servaddr;
-    int sockfd, n, connected;
+    int sockfd, n, connected = 0;
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     bzero(&servaddr, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
@@ -30,7 +31,6 @@ int main(int argc, char **argv){
         puts("connection error");
         sleep(1);
     }
-    puts("make");
     if(!connected)
         exit(1);
     puts("connected");
